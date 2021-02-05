@@ -8,15 +8,15 @@ def trapes_metode(x, y, i):
 
 class fallSkjerm():
     def __init__(self, navn, radius, k, color):
-        self.navn = navn
+        self.navn = navn.capitalize()
+        self.color = color
+        self.radius = radius
         self.k = k
         self.akselerasjon, self.tid = self.hentData()
         self.fart = self.integrasjon(self.akselerasjon)
         self.distanse = self.integrasjon(self.fart)
         self.t, self.v = self.lag_prognose()
-        self.radius = radius
         self.forhold = round(np.pi*self.radius**2/self.k, 4)
-        self.color = color
         self.lagre()
         self.laggraf()
         self.skriv_svar()
@@ -31,10 +31,11 @@ class fallSkjerm():
 
     # Lagrer akselersajonsverdiene i kolonneform i nye filer.
     def lagre(cls):
-        with open(cls.navn+'_akselerasjon.txt', 'w') as file:
-            for i, j in enumerate(cls.akselerasjon):
-                akstxt = str(j) + (24-len(str(j)))*' '
-                file.write(akstxt + str(cls.tid[i]) + '\n')
+        with open(cls.navn+'_kolonne.txt', 'w') as file:
+            file.write(f"{'Tid':<12} Akselerasjon\n")
+            for index, j in enumerate(cls.tid):
+                file.write(
+                    f'{str(round(j, 8)):<12} {str(cls.akselerasjon[index])}\n')
 
     def integrasjon(cls, y_verdier):
         y = [0]
@@ -61,24 +62,25 @@ class fallSkjerm():
 
     # Plotter grafer for fart, prognose-fart og distanse
     def laggraf(cls):
-        plt.plot(cls.t, cls.v, cls.color+'--', label='Prognose')
-        plt.plot(cls.tid, cls.fart, cls.color, label='Målte data')
-        plt.plot(cls.tid, cls.distanse, cls.color+':', label='Distanse')
+        plt.plot(cls.t, cls.v, cls.color+'--', label=cls.navn + ' Prognose')
+        plt.plot(cls.tid, cls.fart, cls.color, label=cls.navn + ' Målte data')
+        plt.plot(cls.tid, cls.distanse, cls.color +
+                 ':', label=cls.navn+' Distanse')
 
     # Printer areal, k-verdi og forhold.
     def skriv_svar(cls):
-        print(f'{cls.navn.capitalize()} fallskjerm:')
+        print(f'{cls.navn} fallskjerm:')
         print(f'Forhold: {cls.forhold}')
         print(f'Distanse: {round(cls.distanse[-1], 4)}\n')
 
 
 # Lager de tre instansene av fallskjermene
-liten = fallSkjerm('liten', 0.11, 0.034, 'r')
-middels = fallSkjerm('middels', 0.17, 0.18, 'g')
+liten = fallSkjerm('liten', 0.11, 0.043, 'r')
+middels = fallSkjerm('middels', 0.17, 0.19, 'g')
 stor = fallSkjerm('stor', 0.26, 0.84, 'b')
 
 # Lager aksetitler, legend og viser grafen
 plt.xlabel('Tid (s)')
 plt.ylabel('Fart (m/s)')
-plt.legend()
+plt.legend(title='Fallskjerm')
 plt.show()
