@@ -9,7 +9,7 @@ time = 0  # Brukes til å registrere tidsmålinger.
 while True:
     if button_a.is_pressed():
         # Åpner en ny fil her, dersom knapp a er blitt trykket på
-        data = open('data.txt', 'w')
+        data = open('temperatur.txt', 'w')
         while True:
             # Viser et MEH-fjes mens målingene pågår
             display.show(Image.MEH)
