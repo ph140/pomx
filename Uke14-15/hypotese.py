@@ -34,14 +34,14 @@ for i in count(0):
         break
 
     # Eulers metode. Deler på 100 for større nøyaktighet
-    model.append(model[i] + waterchange(model[i])/100)  # Eulers metode
+    model.append(model[i] + waterchange(model[i])/1000)  # Eulers metode
     time.append(i+1)
 
 # Skriver hvr lang tid det tar
-print(f'Halveis etter {time[-1]/100} sekunder.')
+print(f'Halveis etter {time[-1]/1000} sekunder.')
 
 # Plotter grafen
 plt.plot(time, model, 'r-')
-plt.xlabel('Tid/s')
+plt.xlabel('Tid/ms')
 plt.ylabel('Vannstand/m')
 plt.show()

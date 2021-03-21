@@ -42,6 +42,6 @@ print(f'Halveis etter {time[-1]/1000} sekunder.')
 
 # Plotter grafen
 plt.plot(time, model, 'r-')
-plt.xlabel('Tid/s')
+plt.xlabel('Tid/ms')
 plt.ylabel('Vannstand/m')
 plt.show()
