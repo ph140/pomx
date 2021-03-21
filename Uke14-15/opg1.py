@@ -11,8 +11,8 @@ h = 0.096  # Hoyde/m
 diameter_botte = 0.176  # Radius/m
 diameter_propp = 0.011  # Radius/m
 
-A = (diameter_botte/1)**2*np.pi  # Areal propp/m^2
-Ap = (diameter_propp/1)**2*np.pi  # Areal grunnflate/m^2
+A = (diameter_botte/2)**2*np.pi  # Areal propp/m^2
+Ap = (diameter_propp/2)**2*np.pi  # Areal grunnflate/m^2
 
 # Utrykk for k
 k = k0*(Ap/A)

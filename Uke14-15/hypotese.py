@@ -11,8 +11,8 @@ h = 0.5  # Hoyde/m
 diameter_basseng = 1.35  # Radius/m
 diameter_propp = 0.024  # Radius/m
 
-A = (diameter_basseng/1)**2*np.pi  # Areal propp/m^2
-Ap = (diameter_propp/1)**2*np.pi  # Areal grunnflate/m^2
+A = (diameter_basseng/2)**2*np.pi  # Areal propp/m^2
+Ap = (diameter_propp/2)**2*np.pi  # Areal grunnflate/m^2
 
 # Utrykk for k
 k = k0*(Ap/A)
