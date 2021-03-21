@@ -24,7 +24,7 @@ def waterchange(h):
 
 
 # Definere lister som trengs
-time = [0]  # Tid/s
+time = [0]  # Tid/ms
 model = [h]  # Hoyde/m
 
 # Uendelig loop, i inkrementerer.
